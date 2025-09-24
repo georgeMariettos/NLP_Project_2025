@@ -6,6 +6,7 @@ import numpy as np
 import math
 import pandas as pd
 import os
+import zipfile
 
 def tokenize_file(file_name:str):
     tokens = []
@@ -152,6 +153,11 @@ def get_figure_of_documents(dataframe:pd.DataFrame, text_number):
 versions = [["./original1.txt", "./text1_version1.txt", "./text1_version2.txt", "./text1_version3.txt"],
             ["./original2.txt", "./text2_version1.txt", "./text2_version2.txt", "./text2_version3.txt"]]
 models_used = ["original", "paraphraser-bart-large", "pegasus_paraphrase", "chatgpt_paraphraser_on_T5_base"]
+
+if((not os.path.exists("./dataset/1of2") and (not os.path.exists("./dataset/2of2")))):
+    for file_name in os.listdir("./dataset"):
+                with zipfile.ZipFile("./dataset/{}".format(file_name), 'r') as zip_file:
+                    zip_file.extractall("./dataset")
 
 model = get_Doc2Vec_Model()
 text_num = 1
