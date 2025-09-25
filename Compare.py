@@ -43,7 +43,7 @@ def get_Doc2Vec_Model():
         documents = get_dataset_tagged_documents()
         print("- Data preprocess: done")
 
-        model = gensim.models.Doc2Vec(vector_size=100, min_count=1)
+        model = gensim.models.Doc2Vec(vector_size=100, min_count=1, dbow_words=1)
         model.build_vocab(documents)
         print("- Vocab build: done")
 
@@ -170,7 +170,7 @@ for test_text in versions:
     for document in document_tokens:
         document_dataframes.append(get_dataframe_of_word_vectors(get_word_vectors(document, model)))
 
-    get_figure_of_word_vectors(document_dataframes, models_used, text_num)
+    get_figure_of_word_vectors(document_dataframes, models_used, text_num, False)
 
     doc_vectors = []
     for tokens in document_tokens:
