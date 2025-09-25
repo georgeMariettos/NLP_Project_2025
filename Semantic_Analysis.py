@@ -170,7 +170,7 @@ for test_text in versions:
     for document in document_tokens:
         document_dataframes.append(get_dataframe_of_word_vectors(get_word_vectors(document, model)))
 
-    get_figure_of_word_vectors(document_dataframes, models_used, text_num, False)
+    get_figure_of_word_vectors(document_dataframes, models_used, text_num)
 
     doc_vectors = []
     for tokens in document_tokens:
